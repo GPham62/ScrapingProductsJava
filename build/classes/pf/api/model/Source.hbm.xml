@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2019, 9:44:38 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pf.api.model.Source" table="Source" schema="dbo" catalog="ScrapingProducts" optimistic-lock="version">
+     
+        <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+        </id>
+        <property name="name" type="serializable">
+            <column name="name" />
+        </property>
+        <property name="icon" type="serializable">
+            <column name="icon" />
+        </property>
+        <set name="sourceProducts" table="SourceProduct" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SourceID" not-null="true" />
+            </key>
+            <one-to-many class="pf.api.model.SourceProduct" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2019, 9:44:38 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pf.api.model.SourceProduct" table="SourceProduct" schema="dbo" catalog="ScrapingProducts" optimistic-lock="version">
+        <composite-id name="id" class="pf.api.model.SourceProductId">
+            <key-property name="sourceId" type="int">
+                <column name="SourceID" />
+            </key-property>
+            <key-property name="productId" type="int">
+                <column name="ProductID" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="product" class="pf.api.model.Product" update="false" insert="false" fetch="select">
+            <column name="ProductID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="source" class="pf.api.model.Source" update="false" insert="false" fetch="select">
+            <column name="SourceID" not-null="true" />
+        </many-to-one>
+        <property name="price" type="serializable">
+            <column name="price" />
+        </property>
+        <property name="link" type="serializable">
+            <column name="link" />
+        </property>
+        <property name="image" type="serializable">
+            <column name="image" />
+        </property>
+    </class>
+</hibernate-mapping>
